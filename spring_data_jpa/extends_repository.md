@@ -47,3 +47,7 @@ public class AccountCustomRepositoryImpl implements AccountCustomRepository {
 Once it's done, we can use our jpa repository in our service layer and call the method `retrieveAccount`. Spring data jpa will find this
 
 method to the right class. We don't need to add indication.
+
+```java
+accountRepository.retrieveAccount(uuid);
+```
