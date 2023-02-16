@@ -1,3 +1,9 @@
+### Transaction type
+
+Spring’s transaction mechanism is a unified mechanism for handling transactions for different data access technologies, and Spring’s transaction mechanism provides a PlatformTransactionManager interface, Different data access technologies implement their different way from this interface.
+
+![Transaction type](assets/transaction_type.webp)
+
 ### Transaction thread based
 
 A transaction is thread based, if you do operation in a new thread, it won't be a rollback on parent/child thread.
