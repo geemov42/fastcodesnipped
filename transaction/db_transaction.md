@@ -72,3 +72,7 @@ As Long/Big Transaction will coz many problems.
 4. Avoid putting the remote call into a transaction. (remote call may take a while)
 
 5. some needed functions maybe we don’t need to use transaction. or we may use @Async to handle it.
+
+### Blogs
+
+[transaction article](https://gayerie.dev/epsi-b3-orm/spring_framework/spring_tx.html)
