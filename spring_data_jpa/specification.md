@@ -8,6 +8,21 @@ public interface AccountJpaSpecification {
     static Specification<AccountEntity> hasFirstname(String firstname) {
         return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("firstname"), firstname);
     }
+
+    static Specification<EmployeeEntity> likeFirstname(String firstname) {
+        return (root, query, criteriaBuilder) -> (isNull(firstname) ?
+                null :
+                criteriaBuilder.like(root.get("firstName"), "%" + firstname + "%")
+        );
+    }
+
+    static Specification<EmployeeEntity> fetchJob() {
+        return (root, query, criteriaBuilder) -> {
+            root.fetch("jobsByJobId", JoinType.LEFT);
+            query.distinct(true);
+            return criteriaBuilder.conjunction();
+        };
+    }
 }
 ```
 
