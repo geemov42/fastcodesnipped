@@ -4,13 +4,11 @@ The fast way to unit test a service is to use `MockitoExtension`.
 @ExtendWith(MockitoExtension.class)
 class MyServiceUnderTest {
 
-
     @InjectMocks
     private MyService sut;
 
     @Mock
     private MyDependency dependency;
-
 }
 ```
 
@@ -48,7 +46,10 @@ class MyServiceUnderTest {
     static void load() throws IOException {
 
         ConfigurableEnvironment environment = new StandardEnvironment();
-        List<PropertySource<?>> yamlProperties = new YamlPropertySourceLoader().load("applicationConfig", new ClassPathResource("application.yml"));
+        List<PropertySource<?>> yamlProperties = new YamlPropertySourceLoader().load(
+                "applicationConfig", 
+                new ClassPathResource("application.yml")
+        );
         yamlProperties.forEach(environment.getPropertySources()::addLast);
 
         Binder binder = Binder.get(environment);
