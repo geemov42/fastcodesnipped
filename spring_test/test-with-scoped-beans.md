@@ -61,7 +61,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, 
-        classes = BirthBenefitDataServiceTest.TestContextConfiguration.class,
+        classes = MyServiceTest.TestContextConfiguration.class,
         properties = {
                 "spring.main.allow-bean-definition-overriding=true"
         })
