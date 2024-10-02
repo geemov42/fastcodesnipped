@@ -59,3 +59,52 @@ class MyServiceUnderTest {
 ```
 
 With that config, we don't need to keep uptodate the configurations in our test and we stay consistent with the application.
+
+Another way to do the task is :
+```java
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.UUID;
+
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Answers;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import reactor.core.publisher.Mono;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+@ExtendWith({ MockitoExtension.class, SpringExtension.class})
+@EnableConfigurationProperties(value = MyConfig.class)
+@ContextConfiguration(classes = {MyConfig.class})
+@TestPropertySource(locations = { "classpath:application.properties"})
+class MyServiceUnderTest {
+
+    private MyService sut;
+
+    @Autowired
+    private MyConfig myConfig;
+
+    @Mock
+    private MyDependency dependency;
+
+    @BeforeEach
+    void init() {
+
+        sut = new MyService(
+                dependency,
+                myConfig
+        );
+    }
+}
+```
